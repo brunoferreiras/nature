@@ -36,4 +36,21 @@ $('[data-group]').each(function(){
       scrollTop: 0
     });
   });
+  
+  $('section').each(function(){
+    var height = $(this).height(),
+        offsetTop = $(this).offset().top,
+        menuHeight = $('.menu').innerHeight(),
+        id = $(this).attr('id'),
+        $itemMenu = $('a[href="#' + id + '"]');
+    
+    $(window).scroll(function(){
+      var scrollTop = $(window).scrollTop();
+      if(offsetTop - menuHeight < scrollTop && offsetTop + height - menuHeight > scrollTop){
+        $itemMenu.addClass('active');
+      } else{
+        $itemMenu.removeClass('active');
+      }
+    });
+  });
 });
